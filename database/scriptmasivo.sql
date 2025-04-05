@@ -94,6 +94,29 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `funcionario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `funcionario` ;
+
+CREATE TABLE IF NOT EXISTS `funcionario` (
+  `id_funcionario` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `puesto` VARCHAR(45) NOT NULL,
+  `id_persona` INT NOT NULL,
+  PRIMARY KEY (`id_funcionario`, `id_persona`),
+  CONSTRAINT `fk_funcionario_persona1`
+    FOREIGN KEY (`id_persona`)
+    REFERENCES `persona` (`id_persona`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_spanish2_ci;
+
+CREATE INDEX `fk_funcionario_persona1_idx` ON `funcionario` (`id_persona` ASC) ;
+
+
+
+-- -----------------------------------------------------
 -- Table `saceam`.`estudiante`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `saceam`.`estudiante` (
