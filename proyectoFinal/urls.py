@@ -4,7 +4,11 @@ from django.urls import path, include  # 👈 IMPORTANTE: se agregó include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('persona/', include('persona.urls')),  # 👈 Esto conecta con las URLs de la app persona
-    path('', include('persona.urls')),
+    path('', include('persona.urls')),        # Esto es lo que hace que al ir a / cargue persona
+    path('pais/', include('pais.urls')),      # Esto hará que al ir a /pais/ cargue lo de pais
+    path('departamento/', include('departamento.urls')),
+    path('ciudad/', include('ciudad.urls')),
+
+
 ]
 

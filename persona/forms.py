@@ -1,7 +1,13 @@
 from django import forms
-from .models import Persona
+from persona.models import Persona
+from ciudad.models import Ciudad
 
-class personaForm(forms.ModelForm):
+class PersonaForm(forms.ModelForm):
     class Meta:
         model = Persona
-        fields = ['nombre', 'apellido', 'fecha_nacimiento', 'ciudad_id_nacimiento', 'ciudad_id_residencia', 'estrato', 'sisben']
+        fields = '__all__'
+    
+    def __init__(self, *args, **kwargs):
+        super(PersonaForm, self).__init__(*args, **kwargs)
+        self.fields['ciudad_nacimiento'].queryset = Ciudad.objects.all()
+        self.fields['ciudad_residencia'].queryset = Ciudad.objects.all()

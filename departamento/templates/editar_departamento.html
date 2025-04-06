@@ -1,0 +1,6 @@
+<h2>Editar Departamento</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Actualizar</button>
+</form>

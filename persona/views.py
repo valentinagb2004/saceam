@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from .models import Persona
-from .forms import personaForm
+from .forms import PersonaForm
 
 
 # Listar personas
@@ -13,14 +13,17 @@ def lista_persona(request):
 
 def agregar_persona(request):
     if request.method == 'POST':
-        form = personaForm(request.POST)
+        form = PersonaForm(request.POST)
+        print("Datos que llegaron del formulario:")
+        print(request.POST)
         if form.is_valid():
             form.save()
             return redirect('lista_personas')  
         else:
-            print(form.errors)  # 👈 Esto te muestra en la terminal qué campo está fallando
+            print("Errores en el formulario:")
+            print(form.errors)  # Esto imprime los errores del formulario
     else:
-        form = personaForm()
+        form = PersonaForm()
     return render(request, 'formulario_persona.html', {'form': form})
 
 
@@ -28,12 +31,12 @@ def agregar_persona(request):
 def editar_persona(request, id):
     persona = get_object_or_404(Persona, id=id)
     if request.method == 'POST':
-        form = personaForm(request.POST, instance=persona)
+        form = PersonaForm(request.POST, instance=persona)
         if form.is_valid():
             form.save()
             return redirect('lista_personas')
     else:
-        form = personaForm(instance=persona)
+        form = PersonaForm(instance=persona)
     return render(request, 'formulario_persona.html', {'form': form})
 
 
