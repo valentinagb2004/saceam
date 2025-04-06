@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ciudades</h1>
+<a href="{% url 'agregar_ciudad' %}">Agregar Ciudad</a>
+<ul>
+    {% for ciudad in ciudades %}
+        <li>
+            {{ ciudad.nombre }} ({{ ciudad.departamento.nombre }}) |
+            <a href="{% url 'editar_ciudad' ciudad.id %}">Editar</a> |
+            <a href="{% url 'eliminar_ciudad' ciudad.id %}">Eliminar</a>
+        </li>
+    {% endfor %}
+</ul>
+
+    
+</body>
+</html>

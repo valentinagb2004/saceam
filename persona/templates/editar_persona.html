@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar persona</title>
+</head>
+<body>
+    <h1>Editar persona</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Nombre:</label><br>
+        <input type="text" name="nombre" value="{{ persona.nombre }}"><br>
+        <label>apellido:</label><br>
+        <input type="text" name="apellido" value="{{ persona.apellido }}"><br>
+        <label>fecha_nacimiento:</label><br>
+        <input type="date" name="fecha_nacimiento" value="{{ persona.fecha_nacimiento }}"><br>
+        <label>estrato:</label><br>
+        <input type="number" name="estrato" value="{{ persona.estrato }}"><br>
+        <label>sisben:</label><br>
+        <input type="text" name="sisben" value="{{ persona.sisben }}"><br><br>
+        <button type="submit">Actualizar</button>
+    </form>
+    <a href="{% url 'lista_personas' %}">Volver</a>
+</body>
+</html>
