@@ -1,0 +1,22 @@
+<!-- persona/templates/lista_persona.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Personas</title>
+</head>
+<body>
+    <h1>personas</h1>
+    <a href="{% url 'agregar_persona' %}">Agregar nueva persona</a>
+    <ul>
+        {% for persona in personas %}
+            <li>
+                {{ persona.nombre }} - {{ persona.edad }} - {{ persona.carrera }}
+                <a href="{% url 'editar_persona' persona.id %}">Editar</a>
+                <a href="{% url 'eliminar_persona' persona.id %}">Eliminar</a>
+            </li>
+        {% empty %}
+            <li>No hay personas registrados.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
